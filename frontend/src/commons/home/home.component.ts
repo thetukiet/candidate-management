@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterOutlet } from '@angular/router';
-// import { BoardModalComponent } from '../components/modals/board-modal/board-modal.component';
-import { DeleteModalComponent } from '../components/modals/delete-modal/delete-modal.component';
 import { TaskModalComponent } from '../components/modals/task-modal/task-modal.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { ProjectBoardComponent } from '../components/project-board/project-board.component';
@@ -28,7 +26,6 @@ import { CandidateDialogComponent } from '../components/modals/candidate-dialog/
     NavbarComponent,
     ProjectBoardComponent,
     SidebarToggleComponent,
-    DeleteModalComponent,
     TaskModalComponent,
   ],
   templateUrl: './home.component.html',

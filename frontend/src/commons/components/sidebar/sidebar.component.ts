@@ -23,11 +23,4 @@ export class SidebarComponent {
     this.closeSidebar.emit();
   }
 
-  addBoard(): void {
-    this.add.emit();
-  }
-
-  selectBoard(boardIdx: number): void {
-    this.selected.emit(boardIdx);
-  }
 }
