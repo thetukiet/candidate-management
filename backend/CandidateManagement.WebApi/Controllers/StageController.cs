@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CandidateManagement.Domain.Payload.Responses;
 using CandidateManagement.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -21,10 +22,10 @@ namespace CandidateManagement.WebApi.Controllers
 
         [Authorize]
 		[HttpGet]
-		public async Task<BaseResponse> GetAll()
+		public async Task<List<StageResponse>> GetAll()
         {
             var stages = await stageService.GetAll();
-            return new BaseResponse(stages);
+            return stages;
         }
 
     }

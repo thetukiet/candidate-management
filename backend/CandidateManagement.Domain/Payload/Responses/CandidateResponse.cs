@@ -25,6 +25,7 @@ namespace CandidateManagement.Domain.Payload.Responses
         // TODO: Apply AutoMapper
         public CandidateResponse(Candidate candidate)
         {
+            Id = candidate.Id;
             FirstName = candidate.FirstName;
             LastName = candidate.LastName;
             Gender = candidate.Gender;

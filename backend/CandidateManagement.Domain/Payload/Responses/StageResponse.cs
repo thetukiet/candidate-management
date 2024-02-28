@@ -22,6 +22,7 @@ namespace CandidateManagement.Domain.Payload.Responses
 
         public StageResponse(Stage stage, List<CandidateResponse> candidates)
         {
+            Id = stage.Id;
             Name = stage.Name;
             Code = stage.Code;
             Theme = stage.Theme;

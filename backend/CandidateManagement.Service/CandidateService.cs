@@ -61,7 +61,7 @@ namespace CandidateManagement.Service
         public async Task<CandidateResponse> AddNewCandidate(CreateNewCandidateRequest request)
         {
             Candidate newCandidate = null;
-            BuildCandidateData(newCandidate, request);
+            BuildCandidateData(ref newCandidate, request);
             await candidateRepository.InsertOneAsync(newCandidate);
 
             return new CandidateResponse(newCandidate);
@@ -75,7 +75,7 @@ namespace CandidateManagement.Service
                 throw new ArgumentException("Candidate Id not found");
             }
 
-            BuildCandidateData(currentCandidate, request);
+            BuildCandidateData(ref currentCandidate, request);
             await candidateRepository.UpdateAsync(currentCandidate);
 
             return new CandidateResponse(currentCandidate);
@@ -87,7 +87,7 @@ namespace CandidateManagement.Service
             return allCandidates.Select(x => new CandidateResponse(x)).ToList();
         }
 
-        private void BuildCandidateData(Candidate entity, CreateNewCandidateRequest request)
+        private void BuildCandidateData(ref Candidate entity, CreateNewCandidateRequest request)
         {
             if (entity == null)
             {
