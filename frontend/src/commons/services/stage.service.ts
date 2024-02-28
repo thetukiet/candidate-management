@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Stage } from '../models/stage.model';
 import { environment }  from '../../environments/environment';
-import { Candidate } from '../models/candidate.model';
 import { APP_CONST } from '../../constants';
 
 @Injectable({
