@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterOutlet } from '@angular/router';
 import { TaskModalComponent } from '../components/modals/task-modal/task-modal.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
-import { ProjectBoardComponent } from '../components/project-board/project-board.component';
-import { SidebarToggleComponent } from '../components/sidebar-toggle/sidebar-toggle.component';
+import { MainBoardComponent } from '../components/main-board/main-board.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { ThemeTogglerComponent } from '../components/sidebar/theme-toggler/theme-toggler.component';
 import { Stage } from '../models/stage.model';
@@ -24,8 +23,7 @@ import { CandidateDialogComponent } from '../components/modals/candidate-dialog/
     SidebarComponent,
     ThemeTogglerComponent,
     NavbarComponent,
-    ProjectBoardComponent,
-    SidebarToggleComponent,
+    MainBoardComponent,
     TaskModalComponent,
   ],
   templateUrl: './home.component.html',
@@ -36,6 +34,7 @@ import { CandidateDialogComponent } from '../components/modals/candidate-dialog/
 export class HomeComponent implements OnInit {
   user: any;
   stages: Stage[] = [];
+  darkMode = false;
 
   constructor(
     private stageService: StageService,
@@ -53,10 +52,6 @@ export class HomeComponent implements OnInit {
     }
 
   }
-
-  darkMode = false;
-
-  isSidebarOpen = true;
 
   addTask(): void {
     const dialogRef = this.dialog.open(CandidateDialogComponent, {
@@ -81,6 +76,7 @@ export class HomeComponent implements OnInit {
   closeDialog(): void {
     this.dialog.closeAll();
   }
+
   editTask(editTask: Candidate): void {
     const dialogRef = this.dialog.open(TaskModalComponent, {
       data: {

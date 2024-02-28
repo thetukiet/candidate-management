@@ -1,6 +1,6 @@
 import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TaskCardComponent } from './task-card/task-card.component';
+import { CandidateCardComponent } from './candidate-card/candidate-card.component';
 import {
   DragDropModule,
   CdkDragDrop,
@@ -11,29 +11,26 @@ import {
 import { Board } from '../../models/board.model';
 import { Candidate } from '../../models/candidate.model';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewTaskModalComponent } from '../modals/view-task-modal/view-task-modal.component';
 import { TaskOption } from '../../models/modal.model';
 import { Stage } from '../../models/stage.model';
-// import { TaskModalComponent } from '../modals/task-modal/task-modal.component';
 import { CandidateDialogComponent } from '../modals/candidate-dialog/candidate-dialog.component';
 
 @Component({
-  selector: 'app-project-board',
+  selector: 'app-main-board',
   standalone: true,
   imports: [
     NgIf,
     NgFor,
     NgStyle,
     NgClass,
-    TaskCardComponent,
+    CandidateCardComponent,
     DragDropModule,
-    ViewTaskModalComponent,
     // CandidateDialogComponent
   ],
-  templateUrl: './project-board.component.html',
-  styleUrl: './project-board.component.scss',
+  templateUrl: './main-board.component.html',
+  styleUrl: './main-board.component.scss',
 })
-export class ProjectBoardComponent {
+export class MainBoardComponent {
 
   @Input() data!: any;
   // @Output() columnAdd = new EventEmitter<void>();

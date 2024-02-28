@@ -5,19 +5,18 @@
 
   <main
     class="main flex-1 duration-700"
-
   >
     <app-navbar
       [user]="user"
-      [opened]="isSidebarOpen"
+      [opened]="true"
       [stages]="stages"
       (taskAdd)="addTask()"
     ></app-navbar>
 
-    <app-project-board
+    <app-main-board
       [data]="stages"
       (taskUpdate)="updateTask($event)"
       (taskUpdateModal)="editTask($event)"
-    ></app-project-board>
+    ></app-main-board>
   </main>
 </div>

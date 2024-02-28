@@ -5,10 +5,10 @@ import { Candidate } from '../../../models/candidate.model';
   selector: 'app-candidate-card',
   standalone: true,
   imports: [],
-  templateUrl: './task-card.component.html',
-  styleUrl: './task-card.component.scss',
+  templateUrl: './candidate-card.component.html',
+  styleUrl: './candidate-card.component.scss',
 })
-export class TaskCardComponent {
+export class CandidateCardComponent {
   @Input() candidate!: Candidate;
 
 }

@@ -1,7 +1,7 @@
 <div
   class="board-container board mt-24 h-screen overflow-auto whitespace-nowrap bg-grey-light px-1.6 py-2.4 dark:bg-grey-vdark sm:mt-32 sm:px-2.4 lg:mt-36"
 >
-  <ng-container *ngIf="data?.length; else emptyProjectBoard">
+  <ng-container *ngIf="data?.length; else emptyMainBoard">
     <div class="inline-block" cdkDropListGroup>
       <div
         *ngFor="let column of data; let i = index"
@@ -52,7 +52,7 @@
   </ng-container>
 </div>
 
-<ng-template #emptyProjectBoard>
+<ng-template #emptyMainBoard>
   <div class="flex h-full flex-col items-center justify-center">
     <h3
       class="mb-3.2 text-center text-lg font-bold leading-lg text-grey-medium"
