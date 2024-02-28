@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CandidateManagement.Data\CandidateManagement.Data.csproj" />
+    <ProjectReference Include="..\CandidateManagement.Domain\CandidateManagement.Domain.csproj" />
+  </ItemGroup>
+</Project>
