@@ -1,0 +1,109 @@
+
+{
+  "data": [
+    {
+        "name": "Applied",
+        "code": "APPLIED",
+        "theme": "NORMAL",
+        "displayIndex": 0,
+        "movableStages": [
+            "INTERVIEWING",
+            "CANCELLED"
+        ],
+        "subInfo": {},
+        "candidates": [
+            {
+                "firstName": "Minh",
+                "lastName": "Tran",
+                "gender": "Male",
+                "email": "minh@gmail.com",
+                "phoneNumber": "09122233400",
+                "currentStage": "APPLIED",
+                "position": "BE Developer",
+                "subInfo": {
+                    "processedBy": null,
+                    "interviewedBy": null,
+                    "rejectedBy": null
+                },
+                "id": null
+            }
+        ],
+        "id": null
+    },
+    {
+        "name": "Interviewing",
+        "code": "INTERVIEWING",
+        "theme": "NORMAL",
+        "displayIndex": 1,
+        "movableStages": [
+            "OFFERED",
+            "FAILED",
+            "CANCELLED"
+        ],
+        "subInfo": {},
+        "candidates": [
+            {
+                "firstName": "Hanh",
+                "lastName": "Nguyen",
+                "gender": "Female",
+                "email": "hanh@gmail.com",
+                "phoneNumber": "09122233456",
+                "currentStage": "INTERVIEWING",
+                "position": "QC",
+                "subInfo": {
+                    "processedBy": null,
+                    "interviewedBy": null,
+                    "rejectedBy": null
+                },
+                "id": null
+            }
+        ],
+        "id": null
+    },
+    {
+        "name": "Offered",
+        "code": "OFFERED",
+        "theme": "NORMAL",
+        "displayIndex": 2,
+        "movableStages": [
+            "HIRED",
+            "CANCELLED"
+        ],
+        "subInfo": {},
+        "candidates": [],
+        "id": null
+    },
+    {
+        "name": "Hired",
+        "code": "HIRED",
+        "theme": "SUCCESS",
+        "displayIndex": 3,
+        "movableStages": [
+            "CANCELLED"
+        ],
+        "subInfo": {},
+        "candidates": [],
+        "id": null
+    },
+    {
+        "name": "Failed",
+        "code": "FAILED",
+        "theme": "FAILED",
+        "displayIndex": 4,
+        "movableStages": [],
+        "subInfo": {},
+        "candidates": [],
+        "id": null
+    },
+    {
+        "name": "Cancelled",
+        "code": "CANCELLED",
+        "theme": "FAILED",
+        "displayIndex": 5,
+        "movableStages": [],
+        "subInfo": {},
+        "candidates": [],
+        "id": null
+    }
+]
+}

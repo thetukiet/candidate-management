@@ -1,0 +1,64 @@
+<div
+  class="board-container board mt-24 h-screen overflow-auto whitespace-nowrap bg-grey-light px-1.6 py-2.4 dark:bg-grey-vdark sm:mt-32 sm:px-2.4 lg:mt-36"
+>
+  <ng-container *ngIf="data?.length; else emptyProjectBoard">
+    <div class="inline-block" cdkDropListGroup>
+      <div
+        *ngFor="let column of data; let i = index"
+        class="mr-2.4 inline-block w-[28rem] whitespace-normal"
+      >
+        <div class="flex flex-col">
+          <h3
+            class="mb-2.4 flex items-center text-sm font-bold uppercase leading-sm tracking-sm text-grey-medium"
+          >
+            <span
+              [ngStyle]="{ background: getThemeColor(column?.theme) }"
+              class="mr-1.2 h-6 w-6 rounded-full"
+            ></span>
+            <span>{{ column?.name }}</span>
+          </h3>
+          <ng-container *ngIf="column.candidates">
+            <div
+              cdkDropList
+              [cdkDropListData]="column.candidates"
+              (cdkDropListDropped)="drop($event, column)"
+              class="stage-column flex min-h-[500px] flex-col gap-8 rounded-md outline-dashed outline-2 outline-purple-medium"
+
+            >
+              <app-candidate-card
+                cdkDrag
+                [cdkDragData]="candidate"
+                (click)="viewTask(candidate)"
+                (keyup.enter)="viewTask(candidate)"
+                [candidate]="candidate"
+                *ngFor="let candidate of column.candidates"
+              >
+                <div class="drag-handle" cdkDragHandle>
+                  <svg width="24px" fill="#828fa3" viewBox="0 0 24 24">
+                    <path
+                      d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"
+                    ></path>
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                  </svg>
+                </div>
+              </app-candidate-card>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+
+  </ng-container>
+</div>
+
+<ng-template #emptyProjectBoard>
+  <div class="flex h-full flex-col items-center justify-center">
+    <h3
+      class="mb-3.2 text-center text-lg font-bold leading-lg text-grey-medium"
+    >
+      Empty Process Stage
+    </h3>
+
+  </div>
+</ng-template>

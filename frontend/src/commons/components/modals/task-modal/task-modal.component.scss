@@ -1,0 +1,14 @@
+input {
+    border: solid thin #CCC;
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+
+
+}
+.mat-mdc-radio-group {
+    .mdc-label {
+        color: #333 !important;
+    }
+}

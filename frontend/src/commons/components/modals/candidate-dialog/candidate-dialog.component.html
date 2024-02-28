@@ -1,0 +1,12 @@
+
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="modal bg-white">
+    <div class="dialog-title">Candidate Information</div>
+    <tui-input tuiTextfieldSize="l" formControlName="firstName" placeholder="First Name">First Name</tui-input>
+    <tui-input tuiTextfieldSize="l" formControlName="lastName" placeholder="Last Name">Last Name</tui-input>
+    <tui-input tuiTextfieldSize="l" formControlName="email" placeholder="Email">Email</tui-input>
+    <tui-input tuiTextfieldSize="l" formControlName="phoneNumber" placeholder="Phone Number">Phone Number</tui-input>
+    <tui-input tuiTextfieldSize="l" formControlName="position" placeholder="Position">Position</tui-input>
+
+    <button class="dialog-submit  btn-lg px-8" type="submit">Submit</button>
+</form>
+

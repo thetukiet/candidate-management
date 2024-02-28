@@ -1,0 +1,23 @@
+<div
+  [ngClass]="{ dark: darkMode }"
+  class="root-container relative flex overflow-hidden"
+>
+
+  <main
+    class="main flex-1 duration-700"
+
+  >
+    <app-navbar
+      [user]="user"
+      [opened]="isSidebarOpen"
+      [stages]="stages"
+      (taskAdd)="addTask()"
+    ></app-navbar>
+
+    <app-project-board
+      [data]="stages"
+      (taskUpdate)="updateTask($event)"
+      (taskUpdateModal)="editTask($event)"
+    ></app-project-board>
+  </main>
+</div>

@@ -1,0 +1,30 @@
+<tui-root>
+<div class="content">
+    <h4>Candidate Management</h4>
+    <img class="login-logo" src="https://cdn-icons-png.flaticon.com/512/3601/3601326.png" alt="logo"/>
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <tui-input
+      tuiAutofillFieldName="username"
+      class="inline-element tui-space_top-4"
+      tuiTextfieldSize="m"
+      [(ngModel)]="model.username"
+      name="username"
+      placeholder="Username"
+      required
+    >Username</tui-input>
+
+    <tui-input-password
+      type="password"
+      class="inline-element tui-space_top-4"
+      tuiTextfieldSize="m"
+      tuiAutofillFieldName="password"
+      [(ngModel)]="model.password"
+      name="password"
+      placeholder="Password"
+      required
+    > Password </tui-input-password>
+
+    <button class="inline-element " tuiButton type="submit">Login</button>
+  </form>
+</div>
+</tui-root>

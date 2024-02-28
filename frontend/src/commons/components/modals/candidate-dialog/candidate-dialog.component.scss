@@ -1,0 +1,39 @@
+
+.custom-dialog-container .mat-dialog-container {
+    width: 600px !important;
+    >div {
+        padding: 20px;
+        background: white;
+        [tuiWrapper][data-appearance=textfield] {
+            margin: 16px 0;
+        }
+    }
+}
+.dialog-title {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 20px;
+}
+.tui-input__native {
+    font-size: 13px;
+}
+.dialog-submit {
+    width: 150px;
+    background-color: #0096c7;
+    margin: 0 auto;
+    padding: 12px;
+    color: white;
+}
+.mdc-dialog__container {
+    width: 600px !important;
+    >div {
+        padding: 20px;
+        background: white;
+        [tuiWrapper][data-appearance=textfield] {
+            margin: 16px 0;
+
+        }
+    }
+}
