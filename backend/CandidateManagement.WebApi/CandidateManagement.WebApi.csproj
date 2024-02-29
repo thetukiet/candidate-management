@@ -11,6 +11,7 @@
     </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CandidateManagement.Domain\CandidateManagement.Domain.csproj" />
+    <ProjectReference Include="..\CandidateManagement.Services\CandidateManagement.Services.csproj" />
     <ProjectReference Include="..\CandidateManagement.Service\CandidateManagement.Service.csproj" />
   </ItemGroup>
 </Project>

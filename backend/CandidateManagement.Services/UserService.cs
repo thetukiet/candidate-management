@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using CandidateManagement.Domain.Entities.Auth;
 
-namespace CandidateManagement.Service
+namespace CandidateManagement.Services
 {
 	public class UserService : IUserService
 	{

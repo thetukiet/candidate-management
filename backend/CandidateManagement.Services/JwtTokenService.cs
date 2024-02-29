@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using CandidateManagement.Domain.Entities.Auth;
 using CandidateManagement.Domain.Models.Auth;
 
-namespace CandidateManagement.Service
+namespace CandidateManagement.Services
 {
 	public class JwtTokenService : IJwtTokenService
 	{

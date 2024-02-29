@@ -5,12 +5,12 @@ using CandidateManagement.Data;
 using CandidateManagement.Domain.Models.Auth;
 using CandidateManagement.Domain.Repositories;
 using CandidateManagement.Domain.Services;
+using CandidateManagement.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
-using CandidateManagement.Service;
 
 using Microsoft.OpenApi.Models;
 

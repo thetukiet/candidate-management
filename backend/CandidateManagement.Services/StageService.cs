@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CandidateManagement.Domain.Extensions;
 using CandidateManagement.Domain.Payload.Responses;
 
-namespace CandidateManagement.Service
+namespace CandidateManagement.Services
 {
 	public class StageService : IStageService
 	{

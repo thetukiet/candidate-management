@@ -10,7 +10,7 @@ using CandidateManagement.Domain.Payload.Requests;
 using CandidateManagement.Domain.Payload.Responses;
 using MongoDB.Bson;
 
-namespace CandidateManagement.Service
+namespace CandidateManagement.Services
 {
 	public class CandidateService : ICandidateService
 	{
