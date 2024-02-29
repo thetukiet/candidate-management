@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterOutlet } from '@angular/router';
-import { TaskModalComponent } from '../components/modals/task-modal/task-modal.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { MainBoardComponent } from '../components/main-board/main-board.component';
 import { Stage } from '../models/stage.model';
@@ -19,7 +18,6 @@ import {CandidateService} from "../services/candidate.service";
     RouterOutlet,
     NavbarComponent,
     MainBoardComponent,
-    TaskModalComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
