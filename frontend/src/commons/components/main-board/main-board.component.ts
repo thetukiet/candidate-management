@@ -60,16 +60,16 @@ export class MainBoardComponent {
       } else {
         let status = this.checkIfCanDrop(event.previousContainer.data, droppedStage);
         if (!status) {
-          this.alertService.open("This candidate cannot be move to stage " + droppedStage.name, {status : 'warning'}).subscribe();
+          this.alertService.open("This candidate cannot be moved to stage " + droppedStage.name + " right now", {status : 'warning'}).subscribe();
           return;
         }
 
         this.candidateService.moveCandidate(event.item.data?.id, droppedStage.code).subscribe({
           next: (response) => {
-            this.alertService.open("New candidate created successfully", {status : 'success'}).subscribe();
+            this.alertService.open("Candidate moved successfully", {status : 'success'}).subscribe();
           },
           error: (error) => {
-            this.alertService.open("New candidate created successfully", {status : 'success'}).subscribe();
+            this.alertService.open("This candidate cannot be moved to " + droppedStage.code + " right now", {status : 'error'}).subscribe();
           }
         });
 
