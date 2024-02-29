@@ -1,7 +1,7 @@
 # Candidate Management
 
 ### Tech-stack
-- Backend: Asp.NET Core with .NET 8
+- Backend: Asp.NET Core WebAPI with .NET 8
 - Frontend: Angular 17, using TaigaUI
 - Database: MongoDB
 
