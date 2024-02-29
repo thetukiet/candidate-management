@@ -5,7 +5,6 @@ import { HomeComponent } from '../commons/home/home.component';
 import { LoginComponent } from '../commons/user-management/login/login.component';
 
 const routes: Routes = [
-  // { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent },
 

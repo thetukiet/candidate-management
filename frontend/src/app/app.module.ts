@@ -6,21 +6,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { HomeComponent } from '../commons/home/home.component';
  import { LoginComponent } from '../commons/user-management/login/login.component';
-// import { CandidateDialogComponent } from '../commons/components/modals/candidate-dialog/candidate-dialog.component';
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { TUI_SANITIZER, TuiAlertModule, TuiButtonModule, TuiRootModule } from "@taiga-ui/core";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    // HomeComponent,
     LoginComponent,
-    // CandidateDialogComponent
   ],
   imports: [
     CommonModule,
