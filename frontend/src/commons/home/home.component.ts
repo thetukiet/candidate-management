@@ -41,10 +41,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.refreshData();
     this.user = JSON.parse(localStorage.getItem(APP_CONST.AUTH_INFO_KEY)!);
     if (this.user == null) {
       this.router.navigate(['/login']);
+    }else{
+      this.refreshData();
     }
   }
 
