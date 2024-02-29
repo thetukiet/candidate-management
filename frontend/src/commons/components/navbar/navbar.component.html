@@ -17,16 +17,11 @@
     />
   </figure>
   <header class="flex flex-1 items-start sm:px-2.4 lg:px-3.2">
-    <!-- <h1
-      class="mr-auto flex-1 font-bold text-black dark:text-white sm:pt-[2.8rem] sm:text-lx sm:leading-lx lg:pt-[2.9rem] lg:text-xl lg:leading-xl"
-    >
-      {{ data?.name }}
-    </h1> -->
     <div class="flex gap-2.4 sm:pt-1.6 lg:pt-8">
       <button
         [disabled]="!stages?.length"
         (click)="addTask()"
-        class="btn-primary btn-lg px-8"
+        class="dialog-submit btn-lg px-8"
       >
         + Add New Candidate
       </button>

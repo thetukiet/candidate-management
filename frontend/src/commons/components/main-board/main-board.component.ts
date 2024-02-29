@@ -6,14 +6,13 @@ import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
-  CdkDrag,
 } from '@angular/cdk/drag-drop';
-import { Board } from '../../models/board.model';
 import { Candidate } from '../../models/candidate.model';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskOption } from '../../models/modal.model';
 import { Stage } from '../../models/stage.model';
 import { CandidateDialogComponent } from '../modals/candidate-dialog/candidate-dialog.component';
+import {CandidateService} from "../../services/candidate.service";
+import {TuiAlertService} from "@taiga-ui/core";
 
 @Component({
   selector: 'app-main-board',
@@ -25,23 +24,19 @@ import { CandidateDialogComponent } from '../modals/candidate-dialog/candidate-d
     NgClass,
     CandidateCardComponent,
     DragDropModule,
-    // CandidateDialogComponent
   ],
   templateUrl: './main-board.component.html',
   styleUrl: './main-board.component.scss',
 })
 export class MainBoardComponent {
-
   @Input() data!: any;
-  // @Output() columnAdd = new EventEmitter<void>();
-  // @Output() boardEdit = new EventEmitter<Board>();
   @Output() taskUpdate = new EventEmitter<{ task: Candidate; columnName: string; mode: string }>();
   @Output() taskUpdateModal = new EventEmitter<Candidate>();
   @Output() taskDeleteModal = new EventEmitter<Candidate>();
-  candidateService: any;
 
   constructor(private dialog: MatDialog,
-    // private candidateService: CandidateService
+              private candidateService: CandidateService,
+              private alertService: TuiAlertService
     ) {
     console.log('activeBoard ', this.data);
   }
@@ -53,83 +48,59 @@ export class MainBoardComponent {
 
   }
 
-  moveCandidate (id: string, newStageCode: string) {
-    this.candidateService.moveCandidate(id, newStageCode);
-  }
-  drop(event: CdkDragDrop<Candidate[]>, column: Stage) {
+  drop(event: CdkDragDrop<Stage>, droppedStage: Stage) {
     if (this.data) {
       if (event.previousContainer === event.container) {
         moveItemInArray(
-          event.container.data,
+          event.container.data.candidates,
           event.previousIndex,
           event.currentIndex,
         );
-        this.moveCandidate(event.item?.data.id,  column.code);
 
       } else {
-        this.moveCandidate(event.item?.data.id, column.code);
-       let status = this.checkConditionDrog(column, event.container.data, event.currentIndex);
-       //if (status) return;
+        let status = this.checkIfCanDrop(event.previousContainer.data, droppedStage);
+        if (!status) {
+          this.alertService.open("This candidate cannot be move to stage " + droppedStage.name, {status : 'warning'}).subscribe();
+          return;
+        }
+
+        this.candidateService.moveCandidate(event.item.data?.id, droppedStage.code).subscribe({
+          next: (response) => {
+            this.alertService.open("New candidate created successfully", {status : 'success'}).subscribe();
+          },
+          error: (error) => {
+            this.alertService.open("New candidate created successfully", {status : 'success'}).subscribe();
+          }
+        });
+
         transferArrayItem(
-          event.previousContainer.data,
-          event.container.data,
+          event.previousContainer.data.candidates,
+          event.container.data.candidates,
           event.previousIndex,
           event.currentIndex,
         );
 
-        // this.boardEdit.emit(this.data);
       }
     }
   }
-  checkConditionDrog(column: Stage, data: Candidate[], index: number) {
-    console.log('column ', column, ' data bvsbv',  data[1],  ' index ', index)
-    let columnCode = column?.code;
-    // let arr = JSON.parse(data);
-    // data
-    // data.map((candidate: Task, k: number)=>{
-    //   if (candidate.email === updateTask.task?.email) {
-    //     this.stages[i].candidates[k] = updateTask.task;
-    //   }
-    // })
-    if (data && data.length >0) {
-      let candidateStatus = data[1]?.currentStage;
-      console.log('columnCode ', columnCode, ' candidateStatus ', data[1] );
+
+  checkIfCanDrop(sourceStage: Stage, targetStage: Stage) {
+    if(sourceStage.movableStages.includes(targetStage.code)){
+      return true;
     }
 
-    return true;
-    // let currentColumn =  this.data.filter((x:Column) => x.name.toLowerCase() === candidateStatus.toLowerCase())
-
-    // let curListmovableStages = currentColumn?.movableStages;
-    // console.log('columnCode ', columnCode, ' candidateStatus ', candidateStatus , ' currentColumn ', currentColumn , ' curListmovableStages ', curListmovableStages);
-
-
+    return false;
   }
 
-  viewTask(candidate: Candidate): void {
-    const dialogRef = this.dialog.open(CandidateDialogComponent, {
+  openCandidate(candidate: Candidate): void {
+    this.dialog.open(CandidateDialogComponent, {
       data: {
         candidate: candidate,
-        columns: this.data,
-        editMode: 'update'
+        isEdit: true
       },
       panelClass: 'custom-dialog-container'
     });
 
-    dialogRef.afterClosed().subscribe((result: TaskOption) => {
-      // if (result === TaskOption.Edit) {
-      //   this.taskUpdateModal.emit(candidate);
-      // } else if (result === TaskOption.Delete) {
-      //   this.taskDeleteModal.emit(candidate);
-      // } else {
-      //   const updateTask = {
-      //     task: dialogRef.componentInstance?.data?.columns
-      //     columnName: dialogRef.componentInstance?.data?.task?.currentStage,
-      //     mode: ''
-      //   };
-
-      //   this.taskUpdate.emit(updateTask);
-      // }
-    });
   }
 
 }

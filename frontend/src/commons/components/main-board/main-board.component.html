@@ -20,7 +20,7 @@
           <ng-container *ngIf="column.candidates">
             <div
               cdkDropList
-              [cdkDropListData]="column.candidates"
+              [cdkDropListData]="column"
               (cdkDropListDropped)="drop($event, column)"
               class="stage-column flex min-h-[500px] flex-col gap-8 rounded-md outline-dashed outline-2 outline-purple-medium"
 
@@ -28,8 +28,8 @@
               <app-candidate-card
                 cdkDrag
                 [cdkDragData]="candidate"
-                (click)="viewTask(candidate)"
-                (keyup.enter)="viewTask(candidate)"
+                (click)="openCandidate(candidate)"
+                (keyup.enter)="openCandidate(candidate)"
                 [candidate]="candidate"
                 *ngFor="let candidate of column.candidates"
               >

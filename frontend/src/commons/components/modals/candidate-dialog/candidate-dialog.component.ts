@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { APP_CONST } from '../../../../constants';
-import { TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiAlertService } from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiAlertService} from '@taiga-ui/core';
+import {Candidate} from '../../../models/candidate.model';
+import {CandidateService} from "../../../services/candidate.service";
 
 @Component({
   standalone: true,
@@ -22,49 +20,86 @@ import { TuiAlertService } from '@taiga-ui/core';
 })
 export class CandidateDialogComponent {
   form: FormGroup;
-  private addNewCandidateUrl = environment.API_SERVER_URL +'/Candidate/AddNewCandidate';
 
   constructor(private fb: FormBuilder,
-    private http: HttpClient,
-    private alertService: TuiAlertService,
-    public dialogRef: MatDialogRef<CandidateDialogComponent>){
+              private alertService: TuiAlertService,
+              private candidateService : CandidateService,
+              public dialogRef: MatDialogRef<CandidateDialogComponent>,
+              @Inject(MAT_DIALOG_DATA)
+              public data: {
+                candidate: Candidate;
+                isEdit: boolean;
+              },){
 
-    this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
-      gender: ['', Validators.required],
-      position: ['', Validators.required]
+    this.form = this.fb.nonNullable.group({
+      firstName: this.fb.control(this.data.candidate?.firstName || '', {
+        validators: [Validators.required],
+      }),
+      lastName: this.fb.control(this.data.candidate?.lastName || '', {
+        validators: [Validators.required],
+      }),
+      email: this.fb.control(this.data.candidate?.email || '', {
+        validators: [Validators.required, Validators.email],
+      }),
+      phoneNumber: this.fb.control(this.data.candidate?.phoneNumber || '', {
+        validators: [Validators.required],
+      }),
+      gender: this.fb.control(this.data.candidate?.gender || 'male', {
+
+      }),
+      position: this.fb.control(this.data.candidate?.position || '', {
+        validators: [Validators.required],
+      }),
+
     });
 
   }
-  getHeader() {
-    let userLogin = JSON.parse(localStorage.getItem(APP_CONST.AUTH_INFO_KEY) as string);
 
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers = headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers = headers.append('Access-Control-Allow-Origin', '*');
-    headers = headers.append('Authorization', 'Bearer ' + userLogin.data.accessToken);
-    return headers;
+  ngOnInit() {
   }
+
   onClose(): void {
     this.dialogRef.close();
   }
+
   submitForm() {
-      this.http.post(this.addNewCandidateUrl, this.form.value, {headers: this.getHeader()}).subscribe({
-        next: (response) => {
-          console.log(response);
-          this.onClose();
-          window.location.reload();
-        },
-        error: (error) => {
-          this.alertService.open(error.error.title, {
-            label: 'Candidate Update Error',
-            status: 'error',
-          }).subscribe();
-        }
-      });
+    if (this.data.isEdit) {
+      this.updateCandidate();
+    } else {
+      this.addNewCandidate();
+    }
+  }
+
+  addNewCandidate() {
+    this.candidateService.addNewCandidate(this.form.value).subscribe({
+      next: (response) => {
+        this.candidateService.notifyUpdateSuccess(null);
+        this.alertService.open("New candidate created successfully", {status : 'success'}).subscribe();
+        this.onClose();
+      },
+      error: (error) => {
+        this.alertService.open(error.error.title, {
+          label: 'Cannot add new candidate',
+          status: 'error',
+        }).subscribe();
+      }
+    });
+  }
+
+  updateCandidate() {
+    this.candidateService.updateCandidate(this.data.candidate.id, this.form.value).subscribe({
+      next: (response) => {
+        // TODO: send more data to notifier
+        this.candidateService.notifyUpdateSuccess(null);
+        this.alertService.open("Candidate updated successfully", {status : 'success'}).subscribe();
+        this.onClose();
+      },
+      error: (error) => {
+        this.alertService.open(error.error.title, {
+          label: 'Candidate Update Error',
+          status: 'error',
+        }).subscribe();
+      }
+    });
   }
 }

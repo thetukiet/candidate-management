@@ -1,4 +1,5 @@
-﻿using CandidateManagement.Domain.Repositories;
+﻿using System;
+using CandidateManagement.Domain.Repositories;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,9 +17,10 @@ namespace CandidateManagement.Data
 			collection = mongoDbContext.GetCollection<T>($"{typeof(T).Name}s");
 		}
 
-		public async Task<T> FindByIdAsync(string Id)
-		{
-			return await collection.Find(x => x.Id == Id).SingleOrDefaultAsync();
+		public async Task<T> FindByIdAsync(string id)
+        {
+            var bsonId = new BsonObjectId(id);
+			return await collection.Find(x => x.Id.Equals(id)).SingleOrDefaultAsync();
 		}
 
         public async Task<T> UpdateAsync(T entity)

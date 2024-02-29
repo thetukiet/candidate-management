@@ -10,13 +10,12 @@
       [user]="user"
       [opened]="true"
       [stages]="stages"
-      (taskAdd)="addTask()"
+      (taskAdd)="addNewCandidate()"
     ></app-navbar>
 
     <app-main-board
       [data]="stages"
-      (taskUpdate)="updateTask($event)"
-      (taskUpdateModal)="editTask($event)"
+
     ></app-main-board>
   </main>
 </div>

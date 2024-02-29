@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { APP_CONST } from '../../constants';
+import { APP_CONST } from '../utils/constant';
+import {HttpUtils} from "../utils/http.utils";
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(this.loginUrl, { username, password }, {headers:  this.getHeader()}).pipe(
+    return this.http.post<any>(this.loginUrl, { username, password }, {headers:  HttpUtils.getNormalHeader()}).pipe(
       tap((response) => {
 
         if (response?.data?.accessToken) {
@@ -22,14 +23,5 @@ export class AuthService {
         }
       })
     );
-  }
-
-  getHeader() {
-
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers = headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers = headers.append('Access-Control-Allow-Origin', '*');
-    return headers;
   }
 }

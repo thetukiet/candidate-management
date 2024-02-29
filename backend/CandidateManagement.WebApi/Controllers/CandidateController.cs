@@ -42,7 +42,7 @@ namespace CandidateManagement.WebApi.Controllers
             return new BaseResponse(newCandidate);
         }
 
-        [HttpPost("{candidateId}")]
+        [HttpPost]
         public async Task<string> MoveCandidate(string candidateId, string newStageCode)
         {
             return await candidateService.MoveToStage(candidateId, newStageCode);

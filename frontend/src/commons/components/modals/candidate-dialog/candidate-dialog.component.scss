@@ -9,13 +9,23 @@
         }
     }
 }
+
 .dialog-title {
-    width: 100%;
-    text-align: center;
-    font-size: 17px;
-    font-weight: bold;
-    margin: 20px;
+  width: calc(100% - 40px);
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 10px 20px 0px 20px;
+  padding-top: 20px;
+  img {
+    width: 12px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
 }
+
 .tui-input__native {
     font-size: 13px;
 }
@@ -26,6 +36,7 @@
     padding: 12px;
     color: white;
 }
+
 .mdc-dialog__container {
     width: 600px !important;
     >div {
@@ -36,4 +47,8 @@
 
         }
     }
+}
+
+.tui-notification__content {
+  font-size: 18px; /* Adjust the font size as needed */
 }
