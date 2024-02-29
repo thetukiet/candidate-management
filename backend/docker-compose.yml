@@ -1,25 +1,15 @@
-version: "3"
+version: "3.8"
 services:
-        webapi:
-                build: .
-                ports:
-                   - 5000:80
-                environment:
-                    ConnectionStrings__MongoDb: "mongodb://root:Mongo_DB_Secret_Password@mongo:27017"
-                networks:
-                   - jwtNetwork
-                depends_on:
-                   - "mongo"
-        mongo:
-                image: mongo
-                environment:
-                    MONGO_INITDB_ROOT_USERNAME: root
-                    MONGO_INITDB_ROOT_PASSWORD: Mongo_DB_Secret_Password
-                networks:
-                   - jwtNetwork
-                volumes:
-                   - type: bind
-                     source: ./mongodb
-                     target: /data/db
-networks:
-        jwtNetwork:
+   mongodb:
+      image: mongo:latest
+      ports:
+         - "8094:27018"
+      environment:
+         MONGO_INITDB_ROOT_USERNAME: admin
+         MONGO_INITDB_ROOT_PASSWORD: valid-key
+         MONGO_INITDB_DATABASE: main-db
+      volumes:
+         - ./db-scripts:/docker-entrypoint-initdb.d
+                
+               
+
