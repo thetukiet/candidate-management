@@ -5,6 +5,8 @@
 - Frontend: Angular 17, using TaigaUI
 - Database: MongoDB
 
+![Main Screenshot](./images/main-screenshot.png)
+
 ## Step to setup
 1. Goto folder `backend` run the following command to create the database instance and init default collections
 ```
